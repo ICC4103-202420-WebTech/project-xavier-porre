@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: xavierporre
+  password: '95150016'
+  host: localhost
+
+development:
+  <<: *default
+  database: proyect_development
+
+test:
+  <<: *default
+  database: proyect_test
+
