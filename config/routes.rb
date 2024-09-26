@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "usuarios/new"
   get "cursos/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -13,5 +14,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root 'cursos#index'
-
+  
+  resources :usuarios, only: [:new, :create]  # Rutas para crear usuarios
+  get 'iniciar_sesion', to: 'sesiones#new', as: 'iniciar_sesion'
+  post 'iniciar_sesion', to: 'sesiones#create'
+  delete 'cerrar_sesion', to: 'sesiones#destroy', as: 'cerrar_sesion'
 end
