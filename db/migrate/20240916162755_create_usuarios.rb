@@ -4,7 +4,7 @@ class CreateUsuarios < ActiveRecord::Migration[7.2]
       t.string :nombre_completo
       t.string :rut
       t.string :contraseña_digest
-      t.string :tipo_u
+      enum tipo_u: { estudiante: 'estudiante', profesor: 'profesor' }
 
       t.timestamps
     end

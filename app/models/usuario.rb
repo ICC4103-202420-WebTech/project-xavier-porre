@@ -9,6 +9,6 @@ class Usuario < ApplicationRecord
   # Validaciones para los campos del usuario
   validates :rut, presence: true, uniqueness: true
   validates :nombre_completo, presence: true
-  validates :contraseña, presence: true
+  validates :contraseña_digest, presence: true
   validates :tipo_u, presence: true, inclusion: { in: %w(estudiante profesor), message: "%{value} no es un tipo de usuario válido" }
 end
