@@ -4,12 +4,12 @@ class SesionesController < ApplicationController
     end
   
     def create
-      usuario = Usuario.find_by(email: params[:email])
+      usuario = Usuario.find_by(rut: params[:rut])
       if usuario&.authenticate(params[:contraseña])
         session[:usuario_id] = usuario.id
         redirect_to root_path, notice: "Has iniciado sesión correctamente."
       else
-        flash.now[:alert] = "Email o contraseña incorrectos."
+        flash.now[:alert] = "Rut o contraseña incorrectos."
         render :new
       end
     end

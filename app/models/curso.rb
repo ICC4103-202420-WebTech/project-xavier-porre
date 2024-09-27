@@ -1,11 +1,8 @@
 class Curso < ApplicationRecord
-  # Un curso pertenece a su creador
-  belongs_to :creador
-    # Un curso tiene muchas clases
+  belongs_to :creador, class_name: 'Usuario'
   has_many :clases, dependent: :destroy
-
-  # Un curso tiene muchas preguntas a través de las clases
-  has_many :preguntas, through: :clases
+  has_many :cursos_usuarios, dependent: :destroy
+  has_many :usuarios, through: :cursos_usuarios
 
   # Validaciones
   validates :nombre, presence: true
