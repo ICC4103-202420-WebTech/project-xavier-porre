@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "clases/index"
+  get "clases/show"
   get "usuarios/new"
   get "cursos/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -19,4 +21,8 @@ Rails.application.routes.draw do
   get 'iniciar_sesion', to: 'sesiones#new', as: 'iniciar_sesion'
   post 'iniciar_sesion', to: 'sesiones#create'
   delete 'cerrar_sesion', to: 'sesiones#destroy', as: 'cerrar_sesion'
+  
+  resources :cursos do
+    resources :clases, only: [:index, :show]
+  end
 end

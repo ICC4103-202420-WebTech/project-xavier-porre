@@ -1,0 +1,23 @@
+
+<h1 class="mb-4"><%= @curso.nombre %></h1>
+<p><%= @curso.descripcion %></p>
+
+<h2 class="mb-4">Clases del Curso</h2>
+
+<div class="row">
+  <% @clases.each do |clase| %>
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title"><%= clase.texto %></h5>
+          <p class="card-text">Imagen: <%= clase.imagen %></p>
+          <p class="card-text">Video: <%= clase.video %></p>
+          <a href="<%= curso_clase_path(@curso, clase) %>" class="btn btn-primary">Ver clase</a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<a href="<%= cursos_path %>" class="btn btn-secondary">Volver a Cursos</a>
+
