@@ -12,7 +12,10 @@ class UsuariosController < ApplicationController
       render :new
     end
   end
-
+  def destroy
+    session[:usuario_id] = nil
+    redirect_to root_path, notice: "Has cerrado sesión correctamente."
+  end
   private
 
   def usuario_params
