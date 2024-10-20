@@ -13,7 +13,12 @@
 
   <div class="form-group">
     <%= form.label :contraseña %>
-    <%= form.password_field :contrseña_digest, class: "form-control" %>
+    <%= form.password_field :password, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :confirmar_contraseña %>
+    <%= form.password_field :password_confirmation, class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -23,5 +28,6 @@
 
   <%= form.submit "Registrarse", class: "btn btn-primary" %>
 <% end %>
+
 
 
