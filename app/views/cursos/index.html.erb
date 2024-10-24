@@ -1,5 +1,12 @@
 <h1 class="mb-4">Cursos Disponibles</h1>
 
+<% if session[:usuario_id] %>
+  <li class="nav-item me-2"> <!-- Añadido me-2 para margen a la derecha -->
+    <%= link_to 'Crear Curso', new_curso_path, class: 'btn btn-primary' %>
+  </li>
+<% end %>
+
+
 <div class="row">
   <% @cursos.each() do |curso| %>
     <div class="col-md-4">
