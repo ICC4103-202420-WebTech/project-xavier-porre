@@ -3,9 +3,9 @@
 one:
   nombre_completo: MyString
   rut: MyString
-  contraseña_digest: MyString
+  password_digest: MyString
 
 two:
   nombre_completo: MyString
   rut: MyString
-  contraseña_digest: MyString
+  password_digest: MyString
