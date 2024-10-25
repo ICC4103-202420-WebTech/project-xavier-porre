@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
 
   resources :cursos do
-    resources :clases, only: [:index, :show]
+    resources :clases, only: [:new, :create, :show, :index]
   end
+  
 end

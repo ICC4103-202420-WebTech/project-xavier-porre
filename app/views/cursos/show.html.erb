@@ -2,6 +2,12 @@
 <h1 class="mb-4"><%= @curso.nombre %></h1>
 <p><%= @curso.descripcion %></p>
 
+<% if session[:usuario_id] == @curso.creador_id %>
+  <li class="nav-item me-2 mb-4"> 
+    <%= link_to 'Crear Clase', new_curso_clase_path(@curso), class: 'btn btn-primary' %>
+  </li>
+<% end %>
+
 <h2 class="mb-4">Clases del Curso</h2>
 
 <div class="row">
