@@ -15,7 +15,7 @@ class CursosController < ApplicationController
 
   def create
     @curso = Curso.new(curso_params)
-    @curso.creador_id = current_usuario.id # Asegúrate de que `current_usuario` está definido
+    @curso.creador_id = session[:usuario_id] 
 
     if @curso.save
       redirect_to @curso, notice: 'Curso creado exitosamente.'
@@ -28,7 +28,7 @@ class CursosController < ApplicationController
   private
 
   def curso_params
-    params.require(:curso).permit(:nombre, :descripcion) # Eliminar :creador_id, ya que ahora se asigna en el controlador
+    params.require(:curso).permit(:nombre, :descripcion) 
   end
   
 end
