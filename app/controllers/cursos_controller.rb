@@ -1,4 +1,6 @@
 class CursosController < ApplicationController
+  
+  
   def index
     @cursos = Curso.all
   end
@@ -28,8 +30,9 @@ class CursosController < ApplicationController
   private
 
   def curso_params
+    
     params.require(:curso).permit(:nombre, :descripcion) 
   end
-  
 end
+
 

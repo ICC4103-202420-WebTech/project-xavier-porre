@@ -1,8 +1,11 @@
 class Curso < ApplicationRecord
+  
   belongs_to :creador, class_name: 'Usuario'
   has_many :clases, dependent: :destroy
   has_many :cursos_usuarios, dependent: :destroy
   has_many :usuarios, through: :cursos_usuarios
+  has_rich_text :descripcion
+
 
   # Validaciones
   validates :nombre, presence: true

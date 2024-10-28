@@ -27,7 +27,7 @@ class ClasesController < ApplicationController
   private
   
   def clase_params
-    params.require(:clase).permit(:nombre, :descripcion)
+    params.require(:clase).permit(:texto)
   end
   
   
