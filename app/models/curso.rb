@@ -9,5 +9,5 @@ class Curso < ApplicationRecord
 
   # Validaciones
   validates :nombre, presence: true
-  validates :descripcion, presence: true
+  validates :descripcion2, presence: true
 end
