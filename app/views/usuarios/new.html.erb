@@ -26,7 +26,7 @@
     <%= form.select :tipo_u, [['Estudiante', 'estudiante'], ['Profesor', 'profesor']], class: "form-control" %>
   </div>
 
-  <%= form.submit "Registrarse", class: "btn btn-primary" %>
+  <%= form.submit "Registrarse", data: { turbo: false }, class: "btn btn-primary" %>
 <% end %>
 
 
