@@ -13,16 +13,17 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :nombre %>
-    <%= form.text_field :nombre %> 
+    <%= form.label :nombre, "Nombre del Curso" %>
+    <%= form.text_field :nombre, id: 'curso_nombre' %> 
   </div>
 
   <div class="field">
-    <%= form.label :descripcion %>
-    <%= form.text_field:descripcion %>
+    <%= form.label :descripcion2, "Descripción del Curso" %>
+    <%= form.rich_text_area :descripcion2, id: 'curso_descripcion2' %>
   </div>
 
   <div class="actions">
     <%= form.submit "Crear Curso" %>
   </div>
 <% end %>
+

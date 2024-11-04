@@ -4,7 +4,7 @@ class Curso < ApplicationRecord
   has_many :clases, dependent: :destroy
   has_many :cursos_usuarios, dependent: :destroy
   has_many :usuarios, through: :cursos_usuarios
-  has_rich_text :descripcion
+  has_rich_text :descripcion2
 
 
   # Validaciones

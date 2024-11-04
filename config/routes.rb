@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :usuarios, only: [:new, :create]  # Rutas para crear usuarios
   get 'iniciar_sesion', to: 'sesiones#new', as: 'iniciar_sesion'
   post 'iniciar_sesion', to: 'sesiones#create'
-  delete 'cerrar_sesion', to: 'usuarios#destroy', as: :logout
+  delete 'logout', to: 'usuarios#destroy'
 
 
   resources :cursos do

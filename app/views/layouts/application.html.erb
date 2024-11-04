@@ -24,7 +24,7 @@
             </li>
             <% if session[:usuario_id] %>
               <li class="nav-item">
-              <%= button_to 'Cerrar sesión', logout_path, method: :delete, class: 'btn btn-danger', data: { confirm: '¿Estás seguro de que deseas cerrar sesión?' } %>
+              <%= button_to 'Cerrar sesión', logout_path, method: :delete, data: { turbo: false }, class: 'btn btn-danger' %>
             <% else %>
               <li class="nav-item">
                 <%= link_to 'Iniciar Sesión', iniciar_sesion_path, class: "nav-link" %>

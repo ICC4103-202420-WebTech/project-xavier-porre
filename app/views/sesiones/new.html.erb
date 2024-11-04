@@ -11,5 +11,5 @@
     <%= form.password_field :password, class: "form-control" %>
   </div>
 
-  <%= form.submit "Iniciar Sesión", class: "btn btn-primary" %>
+  <%= form.submit "Iniciar Sesión", data: { turbo: false }, class: "btn btn-primary" %>
 <% end %>
