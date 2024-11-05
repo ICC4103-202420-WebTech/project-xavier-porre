@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :usuarios
   get "clases/index"
   get "clases/show"
   get "usuarios/new"
