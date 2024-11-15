@@ -1,23 +1,36 @@
 <h1 class="mb-4">Cursos Disponibles</h1>
 
-<% if session[:usuario_id] %>
-  <li class="nav-item me-2 mb-4"> 
-    <%= link_to 'Crear Curso', new_curso_path, class: 'btn btn-primary' %>
-  </li>
-<% end %>
-
-
 <div class="row">
-  <% @cursos.each() do |curso| %>
+  <% @cursos.each do |curso| %>
     <div class="col-md-4">
       <div class="card mb-4">
         <div class="card-body">
+          
           <h5 class="card-title"><%= curso.nombre %></h5>
           <p class="card-text"><%= curso.descripcion2 %></p>
-          <a href="<%= curso_path(curso) %>" class="btn btn-primary">Ver más</a>
+          
+          <a href="<%= curso_path(curso) %>" class="btn btn-primary">
+           <i class="fas fa-magnifying-glass"></i>
+          </a>
+          
+          <% if current_usuario.id == curso.creador_id %>
+            <hr>
+            <div class="d-flex justify-content-start">
+              <a href="<%= edit_curso_path(curso) %>" class="btn btn-warning btn-sm mr-2">
+                <i class="fas fa-edit"></i> Editar
+              </a>
+              <%= button_to curso_path(curso), method: :delete, class: 'btn btn-danger',
+                 data: { confirm: '¿Estás seguro de que deseas borrar este curso?', turbo: false } do %>
+                <i class="fas fa-trash-alt"></i> Borrar
+              <% end %>
+              
+              </a>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
   <% end %>
 </div>
+
 

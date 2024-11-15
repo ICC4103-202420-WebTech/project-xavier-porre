@@ -24,6 +24,16 @@ class ClasesController < ApplicationController
     end
   end
   
+  def destroy
+    @curso = Curso.find(params[:curso_id])      # Encuentra el curso
+    @clase = @curso.clases.find(params[:id])    # Encuentra la clase dentro de ese curso
+
+    if @clase.destroy
+      redirect_to curso_path(@curso), notice: 'Clase eliminada exitosamente.'
+    else
+      redirect_to curso_path(@curso), alert: 'Hubo un error al eliminar la clase.'
+    end
+  end
   private
   
   def clase_params

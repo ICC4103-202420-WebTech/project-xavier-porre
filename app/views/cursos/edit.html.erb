@@ -1,0 +1,28 @@
+<h1>Editar Curso</h1>
+
+<%= form_with(model: @curso, local: true) do |form| %> 
+  <% if @curso.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@curso.errors.count, "error") %> impidió que el curso se guardara:</h2>
+      <ul>
+        <% @curso.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre, "Nombre del Curso" %>
+    <%= form.text_field :nombre, id: 'curso_nombre' %> 
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion2, "Descripción del Curso" %>
+    <%= form.rich_text_area :descripcion2, id: 'curso_descripcion2' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Actualizar Curso", class: "btn btn-primary", data: { turbo: false } %>
+  </div>
+<% end %>

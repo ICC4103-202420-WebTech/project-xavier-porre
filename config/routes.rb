@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   # Rutas para los cursos y clases
   resources :cursos do
-    resources :clases, only: [:new, :create, :show, :index]
+    resources :clases, only: [:new, :create, :show, :index, :destroy]
   end
 
   #correcion para reconocer plantillas en ususarios 

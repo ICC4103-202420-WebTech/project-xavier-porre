@@ -1,4 +1,4 @@
-class Preguntum < ApplicationRecord
+class Pregunta < ApplicationRecord
   # Una pregunta pertenece a un usuario
   belongs_to :usuario
 
