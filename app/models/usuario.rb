@@ -4,12 +4,15 @@ class Usuario < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   # Un usuario puede crear muchos cursos
-  has_many :cursos, dependent: :destroy
+  has_many :cursos_usuarios
+  has_many :cursos, dependent: :destroy, through: :cursos_usuarios
+  # Relaciones para medir progreso de clases
+  has_many :progresos
+  has_many :clases, through: :progresos
   # Un usuario puede hacer muchas preguntas
   has_many :preguntas, dependent: :destroy
   # Un usuario puede hacer muchas respuestas
   has_many :respuestas, dependent: :destroy
-
   # Validaciones para los campos del usuario
   validates :rut, presence: true, uniqueness: true
   validates :nombre_completo, presence: true

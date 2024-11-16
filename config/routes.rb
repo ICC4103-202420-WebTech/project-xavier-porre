@@ -13,8 +13,20 @@ Rails.application.routes.draw do
 
   # Rutas para los cursos y clases
   resources :cursos do
-    resources :clases, only: [:new, :create, :show, :index, :destroy]
+    resources :clases, only: [:new, :create, :show, :index, :edit, :update, :destroy]
+    
+    # Rutas para inscribir y desinscribir estudiantes
+    member do
+      post :inscribir      # POST /cursos/:id/inscribir
+      delete :desinscribir # DELETE /cursos/:id/desinscribir
+    end
   end
+
+  #rutas para manejar progreso de clases
+  resources :clases do
+    resources :progresos, only: [:create, :update]
+  end
+  
 
   #correcion para reconocer plantillas en ususarios 
   devise_for :usuarios, controllers: {

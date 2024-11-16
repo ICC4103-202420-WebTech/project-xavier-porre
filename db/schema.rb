@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_05_123411) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_16_210601) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -90,6 +90,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_05_123411) do
     t.index ["usuario_id"], name: "index_pregunta_on_usuario_id"
   end
 
+  create_table "progresos", force: :cascade do |t|
+    t.bigint "usuario_id", null: false
+    t.bigint "clase_id", null: false
+    t.boolean "completado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["clase_id"], name: "index_progresos_on_clase_id"
+    t.index ["usuario_id"], name: "index_progresos_on_usuario_id"
+  end
+
   create_table "respuesta", force: :cascade do |t|
     t.text "texto"
     t.bigint "usuario_id", null: false
@@ -124,6 +134,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_05_123411) do
   add_foreign_key "cursos_usuarios", "usuarios"
   add_foreign_key "pregunta", "clases"
   add_foreign_key "pregunta", "usuarios"
+  add_foreign_key "progresos", "clases"
+  add_foreign_key "progresos", "usuarios"
   add_foreign_key "respuesta", "pregunta", column: "pregunta_id"
   add_foreign_key "respuesta", "usuarios"
 end

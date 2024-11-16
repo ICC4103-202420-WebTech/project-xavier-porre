@@ -1,6 +1,21 @@
 <h1><%= @clase.texto %></h1>
-<p><strong>Descripción:</strong> <%= @clase.texto %></p>
-<p><strong>Imagen:</strong> 
-<p><strong>Video:</strong> 
+<div class="mt-3">
+  <%= link_to 'Volver al Curso', curso_path(@curso), class: 'btn btn-secondary' %>
+</div>
+<div>
+  <%= @clase.texto2 %>
+</div>
 
+<% if current_usuario %>
+  <% progreso = @clase.progresos.find_by(usuario: current_usuario) %>
+  <%= form_with(model: progreso || Progreso.new(usuario: current_usuario, clase: @clase), 
+                url: progreso ? clase_progreso_path(@clase, progreso) : clase_progresos_path(@clase), 
+                local: false, remote: true) do |form| %>
+    <div class="form-check form-switch">
+      <%= form.check_box :completado, { checked: progreso&.completado }, class: "form-check-input", id: "completado_#{@clase.id}" %>
+      <%= form.label :completado, "Marcar como completada", class: "form-check-label", for: "completado_#{@clase.id}" %>
+    </div>
+    <%= form.submit %>
+  <% end %>
+<% end %>
 

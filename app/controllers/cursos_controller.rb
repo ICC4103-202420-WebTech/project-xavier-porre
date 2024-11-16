@@ -56,12 +56,34 @@ class CursosController < ApplicationController
     end
   end
   
-
   def confirmar_borrado
     @curso = Curso.find(params[:id])  # Encuentra el curso
   end
   
-  
+  def inscribir
+    @curso = Curso.find(params[:id])
+    
+    if current_usuario.cursos.include?(@curso)
+      redirect_to @curso, alert: 'Ya estás inscrito en este curso.'
+    else
+      current_usuario.cursos << @curso
+      redirect_to @curso, notice: 'Te has inscrito exitosamente en el curso.'
+    
+    end
+    
+  end
+
+  def desinscribir
+    @curso = Curso.find(params[:id])
+    
+    if current_usuario.cursos.include?(@curso)
+      current_usuario.cursos.delete(@curso)
+      redirect_to cursos_path, notice: 'Te has desinscrito del curso.'
+    else
+      redirect_to @curso, alert: 'No estás inscrito en este curso.'
+    end
+
+  end
 
   private
 

@@ -14,12 +14,16 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :texto_de_clase %>
-    <%= form.text_field :texto %>
+    <%= form.label :texto, "Título de la Clase" %>
+    <%= form.text_field :texto, class: 'form-control' %>
   </div>
 
+  <div class="field">
+    <%= form.label :texto2, "Contenido Enriquecido" %>
+    <%= form.rich_text_area :texto2, class: 'form-control' %>
+  </div>
 
   <div class="actions">
-    <%= form.submit "Crear Clase" , data: { turbo: false }%>
+    <%= form.submit "Crear Clase", class: 'btn btn-primary', data: { turbo: false } %>
   </div>
 <% end %>

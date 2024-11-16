@@ -1,10 +1,12 @@
 class ClasesController < ApplicationController
+
   def index
     @curso = Curso.find(params[:curso_id])
     @clases = @curso.clases
-  end
+ end
 
   def show
+    @curso = Curso.find(params[:curso_id])
     @clase = Clase.find(params[:id])
   end
 
@@ -23,7 +25,23 @@ class ClasesController < ApplicationController
       render :new
     end
   end
-  
+
+  def edit
+    @curso = Curso.find(params[:curso_id])
+    @clase = @curso.clases.find(params[:id])
+  end
+
+  def update
+    @curso = Curso.find(params[:curso_id])
+    @clase = @curso.clases.find(params[:id])
+
+    if @clase.update(clase_params)
+      redirect_to @curso, notice: 'Clase actualizada exitosamente.'
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @curso = Curso.find(params[:curso_id])      # Encuentra el curso
     @clase = @curso.clases.find(params[:id])    # Encuentra la clase dentro de ese curso
@@ -37,7 +55,7 @@ class ClasesController < ApplicationController
   private
   
   def clase_params
-    params.require(:clase).permit(:texto)
+    params.require(:clase).permit(:texto, :texto2)
   end
   
   
