@@ -1,10 +1,9 @@
 class CursosController < ApplicationController
 
-  
+  load_and_authorize_resource
 
   def index
     @cursos = Curso.all
-    
   end
 
   def show

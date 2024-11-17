@@ -1,7 +1,8 @@
 class PreguntasController < ApplicationController
   before_action :set_curso
   before_action :set_clase
-
+  load_and_authorize_resource :clase
+  load_and_authorize_resource :pregunta, through: :clase
   def create
     @pregunta = @clase.preguntas.build(pregunta_params)
     @pregunta.usuario = current_usuario

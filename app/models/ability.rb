@@ -13,16 +13,22 @@ class Ability
       can :manage, Clase, curso: { creador_id: usuario.id }
       can :manage, Pregunta, clase: { curso: { creador_id: usuario.id } }
     elsif usuario.tipo_u == 'estudiante'
-      # Permitir a los estudiantes inscribirse/desinscribirse de cursos
-      can [:read, :inscribir, :desinscribir], Curso do |curso|
-        curso.cursos_usuarios.where(usuario_id: usuario.id).empty?
+      # Permitir a los estudiantes inscribirse en cursos si no están inscritos
+      can :inscribir, Curso do |curso|
+        !curso.cursos_usuarios.exists?(usuario_id: usuario.id)
       end
 
-      # Permitir a los estudiantes leer clases y hacer preguntas si están inscritos
+      # Permitir a los estudiantes desinscribirse de cursos si están inscritos
+      can :desinscribir, Curso do |curso|
+        curso.cursos_usuarios.exists?(usuario_id: usuario.id)
+      end
+
+      # Permitir a los estudiantes leer clases si están inscritos
       can :read, Clase do |clase|
         clase.curso.cursos_usuarios.exists?(usuario_id: usuario.id)
       end
 
+      # Permitir a los estudiantes crear preguntas si están inscritos
       can :create, Pregunta do |pregunta|
         pregunta.clase.curso.cursos_usuarios.exists?(usuario_id: usuario.id)
       end

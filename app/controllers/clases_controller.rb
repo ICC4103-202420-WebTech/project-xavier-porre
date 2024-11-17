@@ -1,9 +1,12 @@
 class ClasesController < ApplicationController
 
+  load_and_authorize_resource :curso
+  load_and_authorize_resource :clase, through: :curso
+
   def index
     @curso = Curso.find(params[:curso_id])
     @clases = @curso.clases
- end
+  end
 
   def show
     @curso = Curso.find(params[:curso_id])
