@@ -2,7 +2,24 @@
 <h1 class="mb-4"><%= @curso.nombre %></h1>
 <p class="card-text"><%= @curso.descripcion2.to_s.html_safe %></p>
 <h2 class="mb-4">Clases del Curso</h2>
-
+<div class="container-fluid">
+  <% if current_usuario.tipo_u == 'profesor' && @curso.creador_id == current_usuario.id %>
+    <div class="mb-4">
+      <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#inscritos-<%= @curso.id %>" aria-expanded="false" aria-controls="inscritos-<%= @curso.id %>">
+        Ver inscritos
+      </button>
+      <div class="collapse mt-3" id="inscritos-<%= @curso.id %>">
+        <ul class="list-group">
+          <% @curso.usuarios_inscritos.each do |usuario| %>
+            <li class="list-group-item">
+              <strong><%= usuario.nombre_completo %></strong> (<%= usuario.email %>) - <%= usuario.tipo_u.capitalize %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <div class="row">
   <% @clases.each do |clase| %>
@@ -10,18 +27,18 @@
       <div class="card mb-4 <%= 'bg-success text-white' if clase.progresos.find_by(usuario: current_usuario)&.completado %>">
         <div class="card-body">
           <h5 class="card-title"><%= clase.texto %></h5>
-          <a href="<%= curso_clase_path(@curso, clase) %>" class="btn btn-primary">Ver clase</a>
-          <%= link_to 'Editar', edit_curso_clase_path(@curso, clase), class: 'btn btn-warning' %>
-          <%= button_to 'Eliminar', curso_clase_path(@curso, clase), 
-                        method: :delete, 
-                        data: { turbo: false, confirm: '¿Estás seguro de que deseas eliminar esta clase?' }, 
-                        class: 'btn btn-danger' %>
+          <a href="<%= curso_clase_path(@curso, clase) %>" class="btn btn-primary mb-2">Ver clase</a>
+          <div class="d-flex justify-content-between">
+            <%= link_to 'Editar', edit_curso_clase_path(@curso, clase), class: 'btn btn-warning btn-sm' %>
+            <%= button_to 'Eliminar', curso_clase_path(@curso, clase), 
+                          method: :delete, 
+                          data: { turbo: false, confirm: '¿Estás seguro de que deseas eliminar esta clase?' }, 
+                          class: 'btn btn-danger btn-sm' %>
+          </div>
         </div>
       </div>
     </div>
   <% end %>
 </div>
 
-<a href="<%= cursos_path %>" class="btn btn-secondary">Volver a Cursos</a>
-
-
+<a href="<%= cursos_path %>" class="btn btn-secondary mt-4">Volver a Cursos</a>

@@ -85,6 +85,8 @@
                 <% end %>
               <% end %>
               <li class="nav-item">
+                <%= link_to 'Mi Perfil', usuarios_perfil_path, class: 'nav-link' %>
+              </li>
                 <%= button_to 'Cerrar sesión', destroy_usuario_session_path, method: :delete, class: 'btn btn-custom-danger', data: { turbo: false } %>
               </li>
             <% else %>

@@ -5,6 +5,7 @@ class Curso < ApplicationRecord
 
   has_many :cursos_usuarios
   has_many :usuarios, through: :cursos_usuarios
+  has_many :usuarios_inscritos, through: :cursos_usuarios, source: :usuario
   
   has_rich_text :descripcion2
 

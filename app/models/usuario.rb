@@ -6,6 +6,7 @@ class Usuario < ApplicationRecord
   # Un usuario puede crear muchos cursos
   has_many :cursos_usuarios
   has_many :cursos, dependent: :destroy, through: :cursos_usuarios
+  has_many :cursos_inscritos, through: :cursos_usuarios, source: :curso
   # Relaciones para medir progreso de clases
   has_many :progresos
   has_many :clases, through: :progresos

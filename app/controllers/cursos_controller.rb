@@ -2,11 +2,14 @@ class CursosController < ApplicationController
 
   def index
     @cursos = Curso.all
+    
   end
 
   def show
     @curso = Curso.find(params[:id])
     @clases = @curso.clases
+    @curso = Curso.includes(:cursos_usuarios).find(params[:id])
+    
   end
   
   def new

@@ -1,0 +1,48 @@
+<h1>Mi Perfil</h1>
+
+<div class="card mb-4">
+  <div class="card-body">
+    <h3>Información del Usuario</h3>
+    <p><strong>Nombre:</strong> <%= @usuario.nombre_completo %></p>
+    <p><strong>Email:</strong> <%= @usuario.email %></p>
+    <p><strong>Tipo de Usuario:</strong> <%= @usuario.tipo_u.capitalize %></p>
+  </div>
+</div>
+
+<div class="card mb-4">
+  <div class="card-body">
+    <h3>Mis Cursos Inscritos</h3>
+    <% if @cursos_inscritos.any? %>
+      <ul class="list-group">
+        <% @cursos_inscritos.each do |curso| %>
+          <li class="list-group-item">
+            <h5><%= link_to curso.nombre, curso_path(curso) %></h5>
+            <p><%= curso.descripcion %></p>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No estás inscrito en ningún curso.</p>
+    <% end %>
+  </div>
+</div>
+
+<% if @usuario.tipo_u == 'profesor' %>
+  <div class="card">
+    <div class="card-body">
+      <h3>Mis Cursos Creados</h3>
+      <% if @cursos_creados.any? %>
+        <ul class="list-group">
+          <% @cursos_creados.each do |curso| %>
+            <li class="list-group-item">
+              <h5><%= link_to curso.nombre, curso_path(curso) %></h5>
+              <p><%= curso.descripcion %></p>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No has creado ningún curso.</p>
+      <% end %>
+    </div>
+  </div>
+<% end %>

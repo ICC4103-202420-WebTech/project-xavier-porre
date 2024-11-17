@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     resources :progresos, only: [:create, :update]
   end
   
+  namespace :usuarios do
+    resource :perfil, only: :show
+  end
 
   #correcion para reconocer plantillas en ususarios 
   devise_for :usuarios, controllers: {
@@ -34,6 +37,7 @@ Rails.application.routes.draw do
     sessions: 'usuarios/sessions'
   }
   
+   
 
   # Define the root path rout
   root 'cursos#index'

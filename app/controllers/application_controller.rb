@@ -10,5 +10,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nombre_completo, :rut, :tipo_u])
     devise_parameter_sanitizer.permit(:account_update, keys: [:nombre_completo, :rut, :tipo_u])
   end
+  
+
 
 end
