@@ -1,0 +1,10 @@
+<h1>Nueva Pregunta para la Clase: <%= @clase.nombre %></h1>
+
+<%= form_with model: [@clase, @pregunta], local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :contenido, "Contenido de la Pregunta" %>
+    <%= f.text_area :contenido, rows: 5, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Crear Pregunta", class: "btn btn-primary" %>
+<% end %>

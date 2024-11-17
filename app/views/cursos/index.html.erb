@@ -8,19 +8,20 @@
           
           <h5 class="card-title"><%= curso.nombre %></h5>
           <p class="card-text"><%= curso.descripcion2 %></p>
-          
-          <div class="d-flex justify-content-start">
-          
-            <a href="<%= curso_path(curso) %>" class="btn btn-primary">
-              <i class="fas fa-magnifying-glass"></i>
-            </a>
+          <% if current_usuario %>
+            <div class="d-flex justify-content-start">
             
-            <% if current_usuario && !current_usuario.cursos.include?(curso) %>
-              <%= button_to 'Inscribirse', inscribir_curso_path(curso), method: :post, class: 'btn btn-primary', data: { turbo: false } %>
-            <% else %>
-              <%= button_to 'Desinscribirse', desinscribir_curso_path(curso), method: :delete, class: 'btn btn-danger', data: { turbo: false } %>
-            <% end %>
-          </div>
+              <a href="<%= curso_path(curso) %>" class="btn btn-primary">
+                <i class="fas fa-magnifying-glass"></i>
+              </a>
+              
+              <% if current_usuario && !current_usuario.cursos.include?(curso) %>
+                <%= button_to 'Inscribirse', inscribir_curso_path(curso), method: :post, class: 'btn btn-primary', data: { turbo: false } %>
+              <% else %>
+                <%= button_to 'Desinscribirse', desinscribir_curso_path(curso), method: :delete, class: 'btn btn-danger', data: { turbo: false } %>
+              <% end %>
+            </div>
+          <% end %>
           <% if current_usuario &&  current_usuario.id == curso.creador_id %>
             <hr>
             <div class="d-flex justify-content-start">

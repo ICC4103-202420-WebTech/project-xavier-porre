@@ -9,5 +9,5 @@ class Pregunta < ApplicationRecord
   has_many :respuestas, dependent: :destroy
 
   # Validaciones
-  validates :contenido, presence: true
+  validates :texto, presence: true
 end

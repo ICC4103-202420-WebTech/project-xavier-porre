@@ -19,3 +19,44 @@
   <% end %>
 <% end %>
 
+<h2>Foro de Preguntas</h2>
+
+<% if @preguntas.any? %>
+  <% @preguntas.each do |pregunta| %>
+    <div class="mb-3">
+      <p><strong><%= pregunta.usuario.nombre_completo %></strong> preguntó:</p>
+      <p><%= pregunta.texto %></p>
+
+      <% if pregunta.respuestas.any? %>
+        <h6>Respuestas:</h6>
+        <ul>
+          <% pregunta.respuestas.each do |respuesta| %>
+            <li><strong><%= respuesta.usuario.nombre_completo %>:</strong> <%= respuesta.texto %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <% if current_usuario %>
+        <%= form_with(model: [pregunta, Respuesta.new], url: curso_clase_pregunta_respuestas_path(@curso, @clase, pregunta), local: true, data: { turbo: false }) do |f| %>
+          <div class="mb-2">
+            <%= f.text_area :texto, class: "form-control", placeholder: "Escribe una respuesta..." %>
+          </div>
+          <%= f.submit "Responder", class: "btn btn-primary btn-sm" %>
+        <% end %>
+      <% end %>
+    </div>
+    <hr>
+  <% end %>
+<% else %>
+  <p>No hay preguntas todavía. Sé el primero en preguntar.</p>
+<% end %>
+
+<% if current_usuario %>
+  <%= form_with(model: Pregunta.new, url: curso_clase_preguntas_path(@curso, @clase), local: true, data: { turbo: false }) do |f| %>
+
+    <div class="mb-2">
+      <%= f.text_area :texto, class: "form-control", placeholder: "Haz una pregunta sobre esta clase..." %>
+    </div>
+    <%= f.submit "Publicar Pregunta", class: "btn btn-primary" %>
+  <% end %>
+<% end %>

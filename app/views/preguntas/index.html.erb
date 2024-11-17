@@ -1,0 +1,14 @@
+<h1>Preguntas para la Clase: <%= @clase.nombre %></h1>
+
+<% if can? :create, Pregunta %>
+  <%= link_to 'Nueva Pregunta', new_clase_pregunta_path(@clase), class: 'btn btn-primary' %>
+<% end %>
+
+<ul>
+  <% @preguntas.each do |pregunta| %>
+    <li>
+      <strong><%= pregunta.usuario.nombre_completo %>:</strong>
+      <p><%= pregunta.contenido %></p>
+    </li>
+  <% end %>
+</ul>

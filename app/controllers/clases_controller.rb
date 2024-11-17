@@ -8,6 +8,7 @@ class ClasesController < ApplicationController
   def show
     @curso = Curso.find(params[:curso_id])
     @clase = Clase.find(params[:id])
+    @preguntas = @clase.preguntas.includes(:usuario, respuestas: :usuario)
   end
 
   def new

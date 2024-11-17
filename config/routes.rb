@@ -25,12 +25,22 @@ Rails.application.routes.draw do
   #rutas para manejar progreso de clases
   resources :clases do
     resources :progresos, only: [:create, :update]
+    # Rutas para preguntas dentro de las clases
+    resources :preguntas, only: [:index, :new, :create, :edit, :update, :destroy]
   end
   
   namespace :usuarios do
     resource :perfil, only: :show
   end
 
+  resources :cursos do
+    resources :clases do
+      resources :preguntas do
+        resources :respuestas, only: [:create]
+      end
+    end
+  end
+  
   #correcion para reconocer plantillas en ususarios 
   devise_for :usuarios, controllers: {
     registrations: 'usuarios/registrations',

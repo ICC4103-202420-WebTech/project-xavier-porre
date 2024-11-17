@@ -2,7 +2,7 @@
 <h1 class="mb-4"><%= @curso.nombre %></h1>
 <p class="card-text"><%= @curso.descripcion2.to_s.html_safe %></p>
 <h2 class="mb-4">Clases del Curso</h2>
-<div class="container-fluid">
+<div class="container-fluid"> #contenido de profesor
   <% if current_usuario.tipo_u == 'profesor' && @curso.creador_id == current_usuario.id %>
     <div class="mb-4">
       <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#inscritos-<%= @curso.id %>" aria-expanded="false" aria-controls="inscritos-<%= @curso.id %>">
@@ -28,17 +28,21 @@
         <div class="card-body">
           <h5 class="card-title"><%= clase.texto %></h5>
           <a href="<%= curso_clase_path(@curso, clase) %>" class="btn btn-primary mb-2">Ver clase</a>
-          <div class="d-flex justify-content-between">
-            <%= link_to 'Editar', edit_curso_clase_path(@curso, clase), class: 'btn btn-warning btn-sm' %>
-            <%= button_to 'Eliminar', curso_clase_path(@curso, clase), 
-                          method: :delete, 
-                          data: { turbo: false, confirm: '¿Estás seguro de que deseas eliminar esta clase?' }, 
-                          class: 'btn btn-danger btn-sm' %>
-          </div>
+          
+          <% if current_usuario.tipo_u == 'profesor' %> <!-- Solo para profesores -->
+            <div class="d-flex justify-content-between">
+              <%= link_to 'Editar', edit_curso_clase_path(@curso, clase), class: 'btn btn-warning btn-sm' %>
+              <%= button_to 'Eliminar', curso_clase_path(@curso, clase), 
+                            method: :delete, 
+                            data: { turbo: false, confirm: '¿Estás seguro de que deseas eliminar esta clase?' }, 
+                            class: 'btn btn-danger btn-sm' %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
   <% end %>
 </div>
+
 
 <a href="<%= cursos_path %>" class="btn btn-secondary mt-4">Volver a Cursos</a>

@@ -1,4 +1,4 @@
-class Respuestum < ApplicationRecord
+class Respuesta < ApplicationRecord
   # Una respuesta pertenece a un usuario
   belongs_to :usuario
 
@@ -6,5 +6,5 @@ class Respuestum < ApplicationRecord
   belongs_to :pregunta
 
   # Validaciones
-  validates :contenido, presence: true
+  validates :texto, presence: true
 end
