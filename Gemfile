@@ -57,5 +57,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
+#referencia gem
 gem "devise", "~> 4.9"
+#referencia a cancancan
+gem 'cancancan', '~> 3.5'
