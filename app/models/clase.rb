@@ -6,7 +6,7 @@ class Clase < ApplicationRecord
   has_many :preguntas, dependent: :destroy
 
   # relaciones para medir perogreso de usuarios
-  has_many :progresos
+  has_many :progresos , dependent: :destroy
   has_many :usuarios, through: :progresos
 
   #inclucion de rich text

@@ -22,7 +22,7 @@
               <% end %>
             </div>
           <% end %>
-          <% if current_usuario &&  current_usuario.id == curso.creador_id %>
+          <% if current_usuario.id == curso.creador_id %>
             <hr>
             <div class="d-flex justify-content-start">
               <a href="<%= edit_curso_path(curso) %>" class="btn btn-warning btn-sm mr-2">
